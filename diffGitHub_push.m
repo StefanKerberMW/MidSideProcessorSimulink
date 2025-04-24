@@ -38,6 +38,9 @@ function diffGitHub_push(lastpush)
     
         % Compare models and publish results in a printable report
         % Specify the format using 'pdf', 'html', or 'docx'
+        
+        disp(ancestor)
+        disp(fileName)
         comp= visdiff(ancestor, fileName);
         filter(comp, 'unfiltered');
         report = publish(comp,'html');
