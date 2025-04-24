@@ -19,7 +19,8 @@ function diffGitHub_push(lastpush)
     % Create a temporary folder to store the ancestors of the modified models
     % If you have models with the same name in different folders, consider
     % creating multiple folders to prevent overwriting temporary models
-    tempdir = fullfile(proj.RootFolder, "modelscopy");
+    cd(proj.RootFolder);
+    tempdir = "." + filesep + "modelscopy"
     mkdir(tempdir)
     
     % Generate a comparison report for every modified model file
@@ -58,8 +59,7 @@ function diffGitHub_push(lastpush)
         
         % Build git command to get ancestor
         % git show lastpush:models/modelname.slx > modelscopy/modelname_ancestor.slx
-        gitCommand = sprintf('git --no-pager show %s:%s > %s', lastpush, fileName, ancestor)
-        fileName
+        gitCommand = sprintf("git --no-pager show %s:%s > %s", lastpush, fileName, ancestor)
         [status, result] = system(gitCommand)
         assert(status==0, result);
     
