@@ -40,8 +40,6 @@ function diffGitHub_push(lastpush)
         % Compare models and publish results in a printable report
         % Specify the format using 'pdf', 'html', or 'docx'
         
-        disp(ancestor)
-        disp(fileName)
         comp= visdiff(ancestor, fileName);
         filter(comp, 'unfiltered');
         report = publish(comp,'html');
@@ -60,9 +58,9 @@ function diffGitHub_push(lastpush)
         
         % Build git command to get ancestor
         % git show lastpush:models/modelname.slx > modelscopy/modelname_ancestor.slx
-        gitCommand = sprintf('git --no-pager show %s:%s > %s', lastpush, fileName, ancestor);
-        
-        [status, result] = system(gitCommand);
+        gitCommand = sprintf('git --no-pager show %s:%s > %s', lastpush, fileName, ancestor)
+        fileName
+        [status, result] = system(gitCommand)
         assert(status==0, result);
     
     end
