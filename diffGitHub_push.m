@@ -24,6 +24,7 @@ function diffGitHub_push(lastpush)
     
     % Generate a comparison report for every modified model file
     for i = 1:numel(modifiedFiles)
+        disp(modifiedFiles)
         report = diffToAncestor(tempdir,string(modifiedFiles(i)),lastpush);
     end
     
