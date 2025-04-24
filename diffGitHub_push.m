@@ -2,6 +2,8 @@ function diffGitHub_push(lastpush)
     % Open project
     proj = openProject(pwd);
     
+    lastpush = "a5ae19ce0ddec4e45541d62d2ef6386eefc01ad8";  % Insert this for easier debugging
+
     % List modified models since the last push. Use *** to search recursively for modified 
     % SLX files starting in the current folder
     % git diff --name-only lastpush ***.slx
