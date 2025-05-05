@@ -1,6 +1,9 @@
 function diffGitHub_push(lastpush)
     % Open project
-    proj = openProject(pwd)
+    proj = openProject(pwd);
+    
+    % Use a lastpush wich has some changes in it..
+    lastpush = "6abee5b99a75ee7f4b8b5f42020e1fb9d255a265"
     
     % List modified models since the last push. Use *** to search recursively for modified 
     % SLX files starting in the current folder
@@ -25,10 +28,10 @@ function diffGitHub_push(lastpush)
     % creating multiple folders to prevent overwriting temporary models
     tempdir = fullfile(proj.RootFolder, "modelscopy");
     mkdir(tempdir)
-    dir("**")
+
     % Generate a comparison report for every modified model file
     for i = 1:numel(modifiedFiles)
-        diffToAncestor(tempdir,string(modifiedFiles(i)),lastpush);
+        diffToAncestor(tempdir,string(modifiedFiles(i)),lastpush)
     end
     
     % Delete the temporary folder
@@ -62,13 +65,13 @@ function ancestor = getAncestor(tempdir,fileName,lastpush)
     
     % Replace seperators to work with Git and create ancestor file name
     fileName = strrep(fileName, '\', '/');
-    ancestor = strrep(sprintf('%s%s%s',ancestor, "_ancestor", ext), '\', '/');
+    ancestor = strrep(sprintf('"%s%s%s"',ancestor, "_ancestor", ext), '\', '/');
     
     % Build git command to get ancestor
     % git show lastpush:models/modelname.slx > modelscopy/modelname_ancestor.slx
     gitCommand = sprintf('git --no-pager show %s:%s > %s', lastpush, fileName, ancestor);
     
-    [status, ~] = system(gitCommand);
+    [status, ~] = system(gitCommand)
     if status ~= 0
         % new model
         ancestor = [];
