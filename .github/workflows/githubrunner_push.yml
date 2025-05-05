@@ -32,20 +32,17 @@ jobs:
         with:
          release: R2024b
          products: >
-            MATLAB_Test
-            Audio_Toolbox
             Simulink
-            Simulink_Test
 
       - name: Compare Models to Ancestors
         uses: matlab-actions/run-command@v2
         with:
           command: lastpush="${{ github.event.before }}", diffGitHub_push(lastpush)
-      - name: Upload Comparison SLX
-        uses: actions/upload-artifact@v4
-        with:
-           name: slxfiles
-           path: ${{ github.workspace }}/modelscopy/*.slx
+      #- name: Upload Comparison SLX
+      #  uses: actions/upload-artifact@v4
+      #  with:
+      #     name: slxfiles
+      #     path: ${{ github.workspace }}/modelscopy/*.slx
       - name: Upload Comparison Reports
         uses: actions/upload-artifact@v4
         with:

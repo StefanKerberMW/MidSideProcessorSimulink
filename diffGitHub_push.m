@@ -35,7 +35,7 @@ function diffGitHub_push(lastpush)
     end
     
     % Delete the temporary folder
-    %rmdir modelscopy s
+    rmdir modelscopy s
 end
     
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -68,14 +68,13 @@ function ancestor = getAncestor(tempdir,fileName,lastpush)
     fileName = strrep(fileName, '\', '/');
     %ancestor = strrep(sprintf('"%s%s%s"',ancestor, "_ancestor", ext), '\',
     %'/');    % This line to work on windows paths with spaces in pathname
-    ancestor = strrep(sprintf('%s%s%s',ancestor, "_ancestor", ext), '\', '/')
+    ancestor = strrep(sprintf('%s%s%s',ancestor, "_ancestor", ext), '\', '/');
     
     % Build git command to get ancestor
     % git show lastpush:models/modelname.slx > modelscopy/modelname_ancestor.slx
     gitCommand = sprintf('git --no-pager show %s:%s > %s', lastpush, fileName, ancestor);
     
-    [status, ~] = system(gitCommand)
-    dir("./modelscopy/")
+    [status, ~] = system(gitCommand);
     if status ~= 0
         % new model
         ancestor = [];
