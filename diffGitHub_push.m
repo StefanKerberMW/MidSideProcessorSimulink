@@ -72,6 +72,7 @@ function ancestor = getAncestor(tempdir,fileName,lastpush)
     gitCommand = sprintf('git --no-pager show %s:%s > %s', lastpush, fileName, ancestor);
     
     [status, ~] = system(gitCommand)
+    dir("./modelscopy/")
     if status ~= 0
         % new model
         ancestor = [];
