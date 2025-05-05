@@ -65,7 +65,9 @@ function ancestor = getAncestor(tempdir,fileName,lastpush)
     
     % Replace seperators to work with Git and create ancestor file name
     fileName = strrep(fileName, '\', '/');
-    ancestor = strrep(sprintf('"%s%s%s"',ancestor, "_ancestor", ext), '\', '/');
+    %ancestor = strrep(sprintf('"%s%s%s"',ancestor, "_ancestor", ext), '\',
+    %'/');    % This line to work on windows paths with spaces in pathname
+    ancestor = strrep(sprintf('%s%s%s',ancestor, "_ancestor", ext), '\', '/')
     
     % Build git command to get ancestor
     % git show lastpush:models/modelname.slx > modelscopy/modelname_ancestor.slx
