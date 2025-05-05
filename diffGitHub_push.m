@@ -52,10 +52,9 @@ function report = diffToAncestor(tempdir,fileName,lastpush)
     % Compare models and publish results in a printable report
     % Specify the format using 'pdf', 'html', or 'docx'
     
-    % Next three lines commented out to check for file corruption
-    %comp= visdiff(ancestor, fileName);
-    %filter(comp, 'unfiltered');
-    %report = publish(comp,'html');
+    comp= visdiff(ancestor, fileName);
+    filter(comp, 'unfiltered');
+    report = publish(comp,'html');
     
 end
     
