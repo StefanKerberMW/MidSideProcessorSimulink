@@ -25,7 +25,7 @@ function diffGitHub_push(lastpush)
     % creating multiple folders to prevent overwriting temporary models
     tempdir = fullfile(proj.RootFolder, "modelscopy");
     mkdir(tempdir)
-    
+    dir("**")
     % Generate a comparison report for every modified model file
     for i = 1:numel(modifiedFiles)
         diffToAncestor(tempdir,string(modifiedFiles(i)),lastpush);
