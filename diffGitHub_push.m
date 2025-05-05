@@ -35,7 +35,7 @@ function diffGitHub_push(lastpush)
     end
     
     % Delete the temporary folder
-    rmdir modelscopy s
+    %rmdir modelscopy s
 end
     
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
