@@ -11,6 +11,8 @@ on:
   #  branches: [ main ] # ...but only for the main branch
     paths:
       - '**.slx' # ...and only if an .slx file is included
+      - '**.yml' # ...and only if an .yml file is included
+      - '**.m' # ...and only if an .m file is included
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
   
@@ -35,6 +37,7 @@ jobs:
          release: R2024b
          products: >
             Simulink
+            Simulink_Test
             Audio_Toolbox
 
       - name: Compare Models to Ancestors
